@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="description" content="YouTube热度最高的5条伊朗-以色列战争视频深度解析，含互动时间线图表与多维分析。">
+<title>伊以战争 · YouTube 热度 Top 5 深度解析</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#05050d;--surface:#0d0d1a;--surface2:#13132a;--border:rgba(255,255,255,.07);
+  --red:#e63946;--gold:#ffd700;--green:#30d158;--blue:#0a84ff;--purple:#5e5ce6;
+  --text:#e8e8f0;--text2:#9999bb;--radius:16px;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;line-height:1.6;overflow-x:hidden}
+/* HERO */
+.hero{position:relative;min-height:380px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px 20px 60px;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(230,57,70,.25) 0%,transparent 70%),radial-gradient(ellipse 60% 40% at 80% 80%,rgba(10,132,255,.15) 0%,transparent 60%);pointer-events:none}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(230,57,70,.15);border:1px solid rgba(230,57,70,.4);border-radius:40px;padding:6px 18px;font-size:.78rem;font-weight:600;color:var(--red);letter-spacing:.06em;text-transform:uppercase;margin-bottom:24px}
+.hero-tag::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--red);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.4)}}
+.hero h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:800;letter-spacing:-.02em;line-height:1.15;max-width:800px;background:linear-gradient(135deg,#fff 30%,var(--red));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:16px}
+.hero-sub{color:var(--text2);font-size:1rem;max-width:560px}
+.stats-overview{display:flex;gap:32px;justify-content:center;flex-wrap:wrap;margin:40px auto 0;padding:28px 40px;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:var(--radius);backdrop-filter:blur(20px);max-width:680px}
+.stat-ov .val{font-size:1.8rem;font-weight:800;background:linear-gradient(135deg,var(--gold),var(--red));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.stat-ov .lbl{font-size:.75rem;color:var(--text2);margin-top:2px;letter-spacing:.04em}
+/* NAV */
+.nav-bar{display:flex;gap:12px;justify-content:center;padding:32px 20px 8px;flex-wrap:wrap}
+.nav-btn{background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:40px;color:var(--text2);padding:8px 20px;font-size:.85rem;cursor:pointer;transition:all .2s;text-decoration:none}
+.nav-btn:hover{background:rgba(230,57,70,.15);border-color:var(--red);color:var(--red)}
+/* MAIN */
+main{max-width:1160px;margin:0 auto;padding:20px 16px 60px}
+/* VCARD */
+.vcard{background:var(--surface);border:1px solid var(--border);border-radius:22px;padding:36px;margin-bottom:48px;position:relative;overflow:hidden;animation:fadeUp .6s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:translateY(0)}}
+.vcard::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--red),var(--gold),var(--blue))}
+.vcard:nth-child(2)::before{background:linear-gradient(90deg,var(--gold),var(--green))}
+.vcard:nth-child(3)::before{background:linear-gradient(90deg,var(--purple),var(--blue))}
+.vcard:nth-child(4)::before{background:linear-gradient(90deg,var(--green),var(--blue))}
+.vcard:nth-child(5)::before{background:linear-gradient(90deg,var(--blue),var(--red))}
+.vcard-header{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.rank-badge{width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,var(--red),#a00);display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:800;color:#fff;flex-shrink:0}
+.vcard-meta{display:flex;gap:8px;flex-wrap:wrap}
+.type-badge{padding:4px 12px;border-radius:20px;font-size:.72rem;font-weight:600;color:#fff;letter-spacing:.04em}
+.stance-badge{padding:4px 12px;border-radius:20px;font-size:.72rem;font-weight:600;background:rgba(255,255,255,.08);border:1px solid var(--border);color:var(--text2)}
+.vtitle{font-size:1.25rem;font-weight:700;line-height:1.35;color:#fff;margin-bottom:4px}
+.vtitle-cn{font-size:1rem;color:var(--gold);font-family:'Noto Serif SC',serif;margin-bottom:24px}
+.vcard-body{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-bottom:32px}
+@media(max-width:768px){.vcard-body{grid-template-columns:1fr}}
+.player-wrap{position:relative;padding-bottom:56.25%;border-radius:14px;overflow:hidden;background:#000}
+.player-wrap iframe{position:absolute;inset:0;width:100%;height:100%}
+.vinfo{display:flex;flex-direction:column;gap:18px}
+.channel-row{display:flex;align-items:center;gap:14px}
+.ch-icon{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,var(--purple),var(--blue));display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:800;color:#fff;flex-shrink:0}
+.vdate{font-size:.8rem;color:var(--text2)}
+.stats-row{display:flex;gap:16px}
+.stat{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:12px 16px;flex:1;text-align:center}
+.stat-val{font-size:1.1rem;font-weight:700;color:var(--gold)}
+.stat-lbl{font-size:.7rem;color:var(--text2);margin-top:2px}
+.vdesc{font-size:.88rem;color:var(--text2);line-height:1.7;border-left:3px solid var(--border);padding-left:14px}
+.comments{background:var(--surface2);border-radius:12px;padding:16px}
+.comment-title{font-size:.8rem;font-weight:600;color:var(--text2);margin-bottom:10px;letter-spacing:.04em}
+.comment{font-size:.85rem;color:var(--text);padding:8px 0;border-bottom:1px solid var(--border);font-style:italic;line-height:1.55}
+.comment:last-child{border-bottom:none;padding-bottom:0}
+/* TIMELINE */
+.timeline-section,.analysis-section{margin-top:32px;padding-top:32px;border-top:1px solid var(--border)}
+.section-title{font-size:1rem;font-weight:700;color:var(--text2);letter-spacing:.04em;margin-bottom:20px;text-transform:uppercase}
+.timeline-bar{display:flex;border-radius:12px;overflow:hidden;cursor:pointer;height:72px;gap:2px;margin-bottom:16px}
+.tseg{position:relative;display:flex;align-items:flex-end;justify-content:flex-start;padding:8px;transition:all .25s;opacity:.75;overflow:hidden}
+.tseg:hover,.tseg.active{opacity:1;transform:scaleY(1.04);transform-origin:bottom}
+.tseg-label{font-size:.65rem;font-weight:600;color:rgba(255,255,255,.9);line-height:1.3;pointer-events:none}
+.timeline-details{min-height:100px}
+.tdetail{display:none;background:var(--surface2);border:1px solid var(--border);border-radius:14px;padding:22px 24px;animation:fadeUp .3s ease}
+.tdetail.active{display:block}
+.ttime{font-size:.78rem;font-weight:600;color:var(--gold);letter-spacing:.06em}
+.tdetail h4{font-size:1rem;font-weight:700;margin:6px 0 10px;color:#fff}
+.tdetail p{font-size:.9rem;color:var(--text2);line-height:1.75}
+/* ACCORDION */
+.accordion{display:flex;flex-direction:column;gap:6px}
+.acc-item{}
+.acc-btn{width:100%;text-align:left;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:14px 18px;font-size:.9rem;font-weight:600;color:var(--text);cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:8px}
+.acc-btn:hover{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.15)}
+.acc-btn.open{background:rgba(230,57,70,.08);border-color:var(--red);color:#fff}
+.acc-body{display:none;padding:16px 18px;background:rgba(0,0,0,.2);border:1px solid var(--border);border-top:none;border-radius:0 0 10px 10px}
+.acc-body p{font-size:.88rem;color:var(--text2);line-height:1.75}
+.acc-body.open{display:block;animation:fadeUp .25s ease}
+/* FOOTER */
+footer{text-align:center;padding:48px 20px;color:var(--text2);font-size:.82rem;border-top:1px solid var(--border)}
+footer strong{color:var(--text)}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="hero-tag">🔴 LIVE ANALYSIS · 伊以战争实时深析</div>
+  <h1>伊朗 · 以色列战争<br>YouTube 全球热度 Top 5</h1>
+  <p class="hero-sub">基于 YouTube 播放量排序，深度解析五条最具影响力的战争视频，含互动时间线与八维评估</p>
+  <div class="stats-overview">
+    <div class="stat-ov"><div class="val">5</div><div class="lbl">精选视频</div></div>
+    <div class="stat-ov"><div class="val">6,383万+</div><div class="lbl">总播放量</div></div>
+    <div class="stat-ov"><div class="val">4国</div><div class="lbl">媒体来源</div></div>
+    <div class="stat-ov"><div class="val">2026.03.10</div><div class="lbl">数据采集日</div></div>
+  </div>
+</header>
+<nav class="nav-bar">
+  <a class="nav-btn" href="#v1">#1 Dhruv Rathee · 2233万</a>
+  <a class="nav-btn" href="#v2">#2 Dhruv Rathee · 2522万</a>
+  <a class="nav-btn" href="#v3">#3 Breaking Points · 765万</a>
+  <a class="nav-btn" href="#v4">#4 Khan GS · 638万</a>
+  <a class="nav-btn" href="#v5">#5 Fox News · 575万</a>
+</nav>
+<main>
+
+<article class="vcard" id="v1">
+  <div class="vcard-header">
+    <div class="rank-badge">#1</div>
+    <div class="vcard-meta">
+      <div class="type-badge" style="background:#e63946">地缘政治解析</div>
+      <div class="stance-badge">非西方视角</div>
+    </div>
+  </div>
+  <h2 class="vtitle">Iran Israel War | Why is ENTIRE Middle East under Attack?</h2>
+  <p class="vtitle-cn">伊以战争｜为何整个中东都在燃烧？</p>
+  <div class="vcard-body">
+    <div class="player-wrap">
+      <iframe src="https://www.youtube.com/embed/yTV22sMVHPQ" title="Iran Israel War | Why is ENTIRE Middle East under Attack?" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="vinfo">
+      <div class="channel-row"><div class="ch-icon">DR</div><div><strong>Dhruv Rathee</strong><br><span class="vdate">2026年3月2日</span></div></div>
+      <div class="stats-row">
+        <div class="stat"><div class="stat-val">2,233万</div><div class="stat-lbl">播放量</div></div>
+        <div class="stat"><div class="stat-val">70万+</div><div class="stat-lbl">点赞数</div></div>
+        <div class="stat"><div class="stat-val">8:36</div><div class="stat-lbl">视频时长</div></div>
+      </div>
+      <p class="vdesc">这场突如其来的全面打击已令中东地区陷入震荡——其影响甚至可能比我们想象的更快波及印度。随着紧张局势升级、石油航线受威胁、数十万印度侨民身处海湾国家，这场战争的赌注极为巨大。Dhruv Rathee 用他标志性的清晰讲解风格，为全球观众拆解这场危机。</p>
+      <div class="comments">
+        <div class="comment-title">💬 热门评论</div>
+        <div class="comment">「这不只是两个国家的战争，而是两种中东秩序愿景的正面碰撞。」</div>
+        <div class="comment">「记住！这场战争并非从今天开始，而是从1948年就已埋下祸根。」</div>
+        <div class="comment">「感谢如此详尽的历史背景梳理，终于搞懂了整个局势。」</div>
+      </div>
+    </div>
+  </div>
+  <div class="timeline-section">
+    <h3 class="section-title">⏱ 内容时间线 · 分段深度解析</h3>
+    <div class="timeline-bar" data-vid="1"><div class="tseg active" style="width:17%;background:#e63946" data-idx="0"><span class="tseg-label">0:00<br>突发战况导入</span></div><div class="tseg " style="width:17%;background:#ff9f0a" data-idx="1"><span class="tseg-label">1:30<br>中东版图拆解</span></div><div class="tseg " style="width:22%;background:#30d158" data-idx="2"><span class="tseg-label">3:00<br>冲突升级溯源</span></div><div class="tseg " style="width:16%;background:#0a84ff" data-idx="3"><span class="tseg-label">5:00<br>经济与能源威胁</span></div><div class="tseg " style="width:28%;background:#5e5ce6" data-idx="4"><span class="tseg-label">6:30<br>前景研判与结论</span></div></div>
+    <div class="timeline-details"><div class="tdetail active" data-for="0"><span class="ttime">0:00 — 1:30</span><h4>突发战况导入</h4><p>开篇播报式剪辑：Rathee 以最新战场画面切题，快速建立观众的紧迫感。重点提示：本视频以印度受众为核心，首段即强调《为何印度必须关注》，这是其千万流量的核心叙事策略。</p></div><div class="tdetail " data-for="1"><span class="ttime">1:30 — 3:00</span><h4>中东版图拆解</h4><p>运用动态地图，逐一标注伊朗、以色列、代理人武装的地理分布。分析要点：视频将《什叶派之弧》视为理解当前冲突的核心框架，立场相对客观。</p></div><div class="tdetail " data-for="2"><span class="ttime">3:00 — 5:00</span><h4>冲突升级溯源</h4><p>追溯2024年以来的直接对抗事件，包括伊朗对以色列的首次弹道导弹直接打击和以色列的报复。关键洞察：历史性跨越《直接对抗》。</p></div><div class="tdetail " data-for="3"><span class="ttime">5:00 — 6:30</span><h4>经济与能源威胁</h4><p>量化分析：覆盖霍尔木兹海峡封锁对全球石油供应的冲击、印度能源进口依赖风险、以及海湾国家印度侨民的安全威胁。这段是视频流量爆发的核心。</p></div><div class="tdetail " data-for="4"><span class="ttime">6:30 — 8:36</span><h4>前景研判与结论</h4><p>提出三种走向预判：①受控冲突（各方通过外交降温）②区域全面战争③大国卷入。结论倾向于《局势仍存在降温窗口》。</p></div></div>
+  </div>
+  <div class="analysis-section">
+    <h3 class="section-title">🔬 八维深度解析</h3>
+    <div class="accordion"><div class="acc-item">
+<button class="acc-btn" onclick="toggleAcc(this)">📌 内容定性</button>
+<div class="acc-body"><p>短视频地缘政治深析（8分36秒），面向大众观众，以印度视角解读中东危机</p></div>
+</div><div class="acc-item">
+<button class="acc-btn" onclick="toggleAcc(this)">🎯 叙事立场</button>
+<div class="acc-body"><p>非西方/非交战方视角；整体中立偏人道主义，重点关注对普通民众和第三国的外溢冲击</p></div>
+</div><div class="acc-item">
+<button class="acc-btn" onclick="toggleAcc(this)">📊 传播分析</button>
+<div class="acc-body"><p>8天内突破2233万播放，爆发原因：时效性与《ENTIRE Middle East》宏大命题。</p></div>
+</div><div class="acc-item">
+<button class="acc-btn" onclick="toggleAcc(this)">💡 核心信息</button>
+<div class="acc-body"><p>当前伊以冲突是什叶派之弧扩张与以色列防御红线的碰撞；各方仍存外交退路。</p></div>
+</div><div class="acc-item">
+<button class="acc-btn" onclick="toggleAcc(this)">🔍 可信度评估</button>
+<div class="acc-body"><p>★★★★☆ | Dhruv Rathee 为独立评论频道，信源以主流英文媒体为主</p></div>
+</div><div class="acc-item">
+<button class="acc-btn" onclick="toggleAcc(this)">💬 受众反应</button>
+<div class="acc-body"><p>评论区以南亚背景年轻人为主；情感倾向：震惊>担忧>反战</p></div>
+</div><div class="acc-item">
+<button class="acc-btn" onclick="toggleAcc(this)">📖 历史背景</button>
+<div class="acc-body"><p>伊朗与以色列自1979年伊斯兰革命后变敌国；2026年3月冲突升温。</p></div>
+</div></div>
+  </div>
+</article>
+<article class="vcard" id="v2">
+  <div class="vcard-header">
+    <div class="rank-badge">#2</div>
+    <div class="vcard-meta">
+      <div class="type-badge" style="background:#ff9f0a">历史深度纪录</div>
+      <div class="stance-badge">客观中立</div>
+    </div>
+  </div>
+  <h2 class="vtitle">Iran vs Israel | What is happening? | Explained by Dhruv Rathee</h2>
+  <p class="vtitle-cn">伊朗 vs 以色列｜究竟发生了什么？深度解析</p>
+  <div class="vcard-body">
+    <div class="player-wrap">
+      <iframe src="https://www.youtube.com/embed/Ep7nmxLol0Y" title="Iran vs Israel | What is happening? | Explained by Dhruv Rathee" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="vinfo">
+      <div class="channel-row"><div class="ch-icon">DR</div><div><strong>Dhruv Rathee</strong><br><span class="vdate">2024年10月6日</span></div></div>
+      <div class="stats-row">
+        <div class="stat"><div class="stat-val">2,522万</div><div class="stat-lbl">播放量</div></div>
+        <div class="stat"><div class="stat-val">90万+</div><div class="stat-lbl">点赞数</div></div>
+        <div class="stat"><div class="stat-val">24:25</div><div class="stat-lbl">视频时长</div></div>
+      </div>
+      <p class="vdesc">在这个视频中，我解释了伊朗和以色列之间最近紧张局势的来龙去脉，以及它们长达数十年对抗的历史背景。从代理人战争到直接打击，从哈马斯袭击到中东全面重塑……这是一个你需要看懂的时代。</p>
+      <div class="comments">
+        <div class="comment-title">💬 热门评论</div>
+        <div class="comment">「从1948年说到今天，这24分钟看完，整个中东局势豁然开朗。」</div>
+        <div class="comment">「没有废话，全是干货，每一秒都值得看。」</div>
+        <div class="comment">「详尽的地缘分析，是今年最好的中东科普。」</div>
+      </div>
+    </div>
+  </div>
+  <div class="timeline-section">
+    <h3 class="section-title">⏱ 内容时间线 · 分段深度解析</h3>
+    <div class="timeline-bar" data-vid="2"><div class="tseg active" style="width:14%;background:#e63946" data-idx="0"><span class="tseg-label">0:00<br>10月7日切入</span></div><div class="tseg " style="width:18%;background:#ff9f0a" data-idx="1"><span class="tseg-label">3:30<br>1979年前的盟友</span></div><div class="tseg " style="width:24%;background:#30d158" data-idx="2"><span class="tseg-label">8:00<br>代理人战争网络</span></div><div class="tseg " style="width:18%;background:#0a84ff" data-idx="3"><span class="tseg-label">14:00<br>直接对抗升级</span></div><div class="tseg " style="width:14%;background:#5e5ce6" data-idx="4"><span class="tseg-label">18:30<br>国际社会的分裂</span></div><div class="tseg " style="width:12%;background:#ffd60a" data-idx="5"><span class="tseg-label">22:00<br>未来推演</span></div></div>
+    <div class="timeline-details"><div class="tdetail active" data-for="0"><span class="ttime">0:00 — 3:30</span><h4>10月7日切入</h4><p>以哈马斯对以色列的突袭作为叙事切入点，快速建立时间锚。深层逻辑：利用全球熟悉的事件打开注意力。</p></div><div class="tdetail " data-for="1"><span class="ttime">3:30 — 8:00</span><h4>1979年前的盟友</h4><p>详述两国曾是中东最紧密的合作伙伴，这段《被遗忘的历史》颠覆认知。</p></div><div class="tdetail " data-for="2"><span class="ttime">8:00 — 14:00</span><h4>代理人战争网络</h4><p>系统梳理伊朗在中东构建的代理人武装网络。核心论点：抵抗轴心的战略目标。</p></div><div class="tdetail " data-for="3"><span class="ttime">14:00 — 18:30</span><h4>直接对抗升级</h4><p>详细解析2024年无人机和导弹打击。红线已被跨越的政治意义。</p></div><div class="tdetail " data-for="4"><span class="ttime">18:30 — 22:00</span><h4>国际社会的分裂</h4><p>呈现G7与伊斯兰世界的对立；加速去西方化进程。</p></div><div class="tdetail " data-for="5"><span class="ttime">22:00 — 24:25</span><h4>未来推演</h4><p>核武扩散风险警告与开放性结尾。</p></div></div>
+  </div>
+  <div class="analysis-section">
+    <h3 class="section-title">🔬 八维深度解析</h3>
+    <div class="accordion"><div class="acc-item">
+<button class="acc-btn" onclick="toggleAcc(this)">📌 内容定性</button>
+<div class="acc-body"><p>长篇历史教育视频（24分钟），覆盖1948至今史。</p></div>
+</div><div class="acc-item">
+<button class="acc-btn" onclick="toggleAcc(this)">🎯 叙事立场</button>
+<div class="acc-body"><p>印度全球主义视角；批评双方极端行为，同情平民。</p></div>
+</div><div class="acc-item">
+<button class="acc-btn" onclick="toggleAcc(this)">📊 传播分析</button>
+<div class="acc-body"><p>2522万播放，最高观战量，得益于历史节点的长尾效应。</p></div>
+</div><div class="acc-item">
+<button class="acc-btn" onclick="toggleAcc(this)">💡 核心信息</button>
+<div class="acc-body"><p>伊以冲突的根源在于1979年的文明选择，代理人战争是战略共识。</p></div>
+</div><div class="acc-item">
+<button class="acc-btn" onclick="toggleAcc(this)">🔍 可信度评估</button>
+<div class="acc-body"><p>★★★★☆ | 核心史实准确，长视频有系统性优势。</p></div>
+</div><div class="acc-item">
+<button class="acc-btn" onclick="toggleAcc(this)">💬 受众反应</button>
+<div class="acc-body"><p>全球多元受众，多方激辩。</p></div>
+</div><div class="acc-item">
+<button class="acc-btn" onclick="toggleAcc(this)">📖 历史背景</button>
+<div class="acc-body"><p>哈马斯袭击周年纪念前后发布。</p></div>
+</div></div>
+  </div>
+</article>
+<article class="vcard" id="v3">
+  <div class="vcard-header">
+    <div class="rank-badge">#3</div>
+    <div class="vcard-meta">
+      <div class="type-badge" style="background:#5e5ce6">军事战略评论</div>
+      <div class="stance-badge">反干预主义</div>
+    </div>
+  </div>
+  <h2 class="vtitle">Professor Jiang Predicts: US WILL LOSE Iran War</h2>
+  <p class="vtitle-cn">江教授预言：美国将输掉伊朗战争</p>
+  <div class="vcard-body">
+    <div class="player-wrap">
+      <iframe src="https://www.youtube.com/embed/4Ql24Z8SIeE" title="Professor Jiang Predicts: US WILL LOSE Iran War" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="vinfo">
+      <div class="channel-row"><div class="ch-icon">BP</div><div><strong>Breaking Points</strong><br><span class="vdate">2026年3月3日</span></div></div>
+      <div class="stats-row">
+        <div class="stat"><div class="stat-val">765万</div><div class="stat-lbl">播放量</div></div>
+        <div class="stat"><div class="stat-val">25.8万+</div><div class="stat-lbl">点赞数</div></div>
+        <div class="stat"><div class="stat-val">15:15</div><div class="stat-lbl">视频时长</div></div>
+      </div>
+      <p class="vdesc">Krystal 与 Saagar 邀请教授探讨对伊战争话题，分析军事、后勤和冲突走向。</p>
+      <div class="comments">
+        <div class="comment-title">💬 热门评论</div>
+        <div class="comment">「错了一次可以，但这将是第三次了。」</div>
+        <div class="comment">「后勤分析的准确性令人不寒而栗——数据支撑有力。」</div>
+        <div class="comment">「极具穿透力的反建制视角。」</div>
+      </div>
+    </div>
+  </div>
+  <div class="timeline-section">
+    <h3 class="section-title">⏱ 内容时间线 · 分段深度解析</h3>
+    <div class="timeline-bar" data-vid="3"><div class="tseg active" style="width:10%;background:#e63946" data-idx="0"><span class="tseg-label">0:00<br>开场定调</span></div><div class="tseg " style="width:23%;background:#ff9f0a" data-idx="1"><span class="tseg-label">1:30<br>地理牢笼</span></div><div class="tseg " style="width:26%;background:#30d158" data-idx="2"><span class="tseg-label">5:00<br>不对称威胁</span></div><div class="tseg " style="width:20%;background:#0a84ff" data-idx="3"><span class="tseg-label">9:00<br>大国后援</span></div><div class="tseg " style="width:21%;background:#5e5ce6" data-idx="4"><span class="tseg-label">12:00<br>最终预测</span></div></div>
+    <div class="timeline-details"><div class="tdetail active" data-for="0"><span class="ttime">0:00 — 1:30</span><h4>开场定调</h4><p>反战开场，质疑战争的必要性。</p></div><div class="tdetail " data-for="1"><span class="ttime">1:30 — 5:00</span><h4>地理牢笼</h4><p>伊朗国土大、多山地形令地面入侵代价极大。</p></div><div class="tdetail " data-for="2"><span class="ttime">5:00 — 9:00</span><h4>不对称威胁</h4><p>反介入/区域拒止体系，推高冲突成本。</p></div><div class="tdetail " data-for="3"><span class="ttime">9:00 — 12:00</span><h4>大国后援</h4><p>伊朗非孤立，背后有非西方轴心的隐性支撑。</p></div><div class="tdetail " data-for="4"><span class="ttime">12:00 — 15:15</span><h4>最终预测</h4><p>美国即便军事上占优也会面对政治和经济层面的失败。</p></div></div>
+  </div>
+  <div class="analysis-section">
+    <h3 class="section-title">🔬 八维深度解析</h3>
+    <div class="accordion"><div class="acc-item">
+<button class="acc-btn" onclick="toggleAcc(this)">📌 内容定性</button>
+<div class="acc-body"><p>脱口秀与专家访谈，聚焦军事可行性分析。</p></div>
+</div><div class="acc-item">
+<button class="acc-btn" onclick="toggleAcc(this)">🎯 叙事立场</button>
+<div class="acc-body"><p>美国反干预主义立场，批评军工复合体。</p></div>
+</div><div class="acc-item">
+<button class="acc-btn" onclick="toggleAcc(this)">📊 传播分析</button>
+<div class="acc-body"><p>标题极具挑衅性。吸引多元受众点击。</p></div>
+</div><div class="acc-item">
+<button class="acc-btn" onclick="toggleAcc(this)">💡 核心信息</button>
+<div class="acc-body"><p>全面战争在政治与经济上不可承受。</p></div>
+</div><div class="acc-item">
+<button class="acc-btn" onclick="toggleAcc(this)">🔍 可信度评估</button>
+<div class="acc-body"><p>★★★☆☆ | 立场鲜明，存在反战倾向，但数据可参考。</p></div>
+</div><div class="acc-item">
+<button class="acc-btn" onclick="toggleAcc(this)">💬 受众反应</button>
+<div class="acc-body"><p>美国进步派、反战群体，军退老兵支持。</p></div>
+</div><div class="acc-item">
+<button class="acc-btn" onclick="toggleAcc(this)">📖 历史背景</button>
+<div class="acc-body"><p>非两党主流框架的独立评论。</p></div>
+</div></div>
+  </div>
+</article>
+<article class="vcard" id="v4">
+  <div class="vcard-header">
+    <div class="rank-badge">#4</div>
+    <div class="vcard-meta">
+      <div class="type-badge" style="background:#30d158">军事技术深析</div>
+      <div class="stance-badge">教育中立</div>
+    </div>
+  </div>
+  <h2 class="vtitle">Iran Israel War | Iranian Drone & Ballistic Missiles | Khamenei</h2>
+  <p class="vtitle-cn">伊以战争｜伊朗无人机与弹道导弹全解析</p>
+  <div class="vcard-body">
+    <div class="player-wrap">
+      <iframe src="https://www.youtube.com/embed/X9njQevARsw" title="Iran Israel War | Iranian Drone & Ballistic Missiles | Khamenei" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="vinfo">
+      <div class="channel-row"><div class="ch-icon">KG</div><div><strong>Khan GS Research Centre</strong><br><span class="vdate">2026年3月7日</span></div></div>
+      <div class="stats-row">
+        <div class="stat"><div class="stat-val">638万</div><div class="stat-lbl">播放量</div></div>
+        <div class="stat"><div class="stat-val">28万+</div><div class="stat-lbl">点赞数</div></div>
+        <div class="stat"><div class="stat-val">35:41</div><div class="stat-lbl">视频时长</div></div>
+      </div>
+      <p class="vdesc">本质军事技术拆解，从无人机到弹道导弹全景剖析对抗体系。</p>
+      <div class="comments">
+        <div class="comment-title">💬 热门评论</div>
+        <div class="comment">「用接地气的方式讲透硬核军事。」</div>
+        <div class="comment">「美国不会停下脚，但反制手段很多。」</div>
+        <div class="comment">「最硬核的弹道轨迹分析。」</div>
+      </div>
+    </div>
+  </div>
+  <div class="timeline-section">
+    <h3 class="section-title">⏱ 内容时间线 · 分段深度解析</h3>
+    <div class="timeline-bar" data-vid="4"><div class="tseg active" style="width:14%;background:#e63946" data-idx="0"><span class="tseg-label">0:00<br>态势鸟瞰</span></div><div class="tseg " style="width:19%;background:#ff9f0a" data-idx="1"><span class="tseg-label">5:00<br>无人机体系</span></div><div class="tseg " style="width:22%;background:#30d158" data-idx="2"><span class="tseg-label">12:00<br>弹道导弹博弈</span></div><div class="tseg " style="width:22%;background:#0a84ff" data-idx="3"><span class="tseg-label">20:00<br>军事指挥链</span></div><div class="tseg " style="width:14%;background:#5e5ce6" data-idx="4"><span class="tseg-label">28:00<br>地面演练</span></div><div class="tseg " style="width:9%;background:#ffd60a" data-idx="5"><span class="tseg-label">33:00<br>全球供应链冲击</span></div></div>
+    <div class="timeline-details"><div class="tdetail active" data-for="0"><span class="ttime">0:00 — 5:00</span><h4>态势鸟瞰</h4><p>战场形势动态评估与地图解构。</p></div><div class="tdetail " data-for="1"><span class="ttime">5:00 — 12:00</span><h4>无人机体系</h4><p>见证者自杀式无人机的低成本优势与突防逻辑。</p></div><div class="tdetail " data-for="2"><span class="ttime">12:00 — 20:00</span><h4>弹道导弹博弈</h4><p>沙哈布与箭式导弹的技术参数对抗。</p></div><div class="tdetail " data-for="3"><span class="ttime">20:00 — 28:00</span><h4>军事指挥链</h4><p>革命卫队与正规军的双轨指挥。</p></div><div class="tdetail " data-for="4"><span class="ttime">28:00 — 33:00</span><h4>地面演练</h4><p>假定情境下的防御战推演。</p></div><div class="tdetail " data-for="5"><span class="ttime">33:00 — 35:41</span><h4>全球供应链冲击</h4><p>封锁海峡的连锁反应预测。</p></div></div>
+  </div>
+  <div class="analysis-section">
+    <h3 class="section-title">🔬 八维深度解析</h3>
+    <div class="accordion"><div class="acc-item">
+<button class="acc-btn" onclick="toggleAcc(this)">📌 内容定性</button>
+<div class="acc-body"><p>长篇技术硬核分析，印度公务员教育风格。</p></div>
+</div><div class="acc-item">
+<button class="acc-btn" onclick="toggleAcc(this)">🎯 叙事立场</button>
+<div class="acc-body"><p>教育科普主导，事实驱动，情感色彩不强。</p></div>
+</div><div class="acc-item">
+<button class="acc-btn" onclick="toggleAcc(this)">📊 传播分析</button>
+<div class="acc-body"><p>高完播率与专业粉丝黏性带来的长尾播放。</p></div>
+</div><div class="acc-item">
+<button class="acc-btn" onclick="toggleAcc(this)">💡 核心信息</button>
+<div class="acc-body"><p>成本不对称是核心战略武器。</p></div>
+</div><div class="acc-item">
+<button class="acc-btn" onclick="toggleAcc(this)">🔍 可信度评估</button>
+<div class="acc-body"><p>★★★★★ | 技术考据严谨度极高。</p></div>
+</div><div class="acc-item">
+<button class="acc-btn" onclick="toggleAcc(this)">💬 受众反应</button>
+<div class="acc-body"><p>军事迷、备考学生群体。</p></div>
+</div><div class="acc-item">
+<button class="acc-btn" onclick="toggleAcc(this)">📖 历史背景</button>
+<div class="acc-body"><p>知识付费及应试教育对时事的极速转化产物。</p></div>
+</div></div>
+  </div>
+</article>
+<article class="vcard" id="v5">
+  <div class="vcard-header">
+    <div class="rank-badge">#5</div>
+    <div class="vcard-meta">
+      <div class="type-badge" style="background:#0a84ff">主流突发新闻</div>
+      <div class="stance-badge">亲西方立场</div>
+    </div>
+  </div>
+  <h2 class="vtitle">US launches nearly 900 strikes on Iran in RARE daytime operation</h2>
+  <p class="vtitle-cn">美国对伊朗发动罕见白昼行动，近900次空袭</p>
+  <div class="vcard-body">
+    <div class="player-wrap">
+      <iframe src="https://www.youtube.com/embed/ah-HQboR6Mc" title="US launches nearly 900 strikes on Iran in RARE daytime operation" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="vinfo">
+      <div class="channel-row"><div class="ch-icon">FN</div><div><strong>Fox News</strong><br><span class="vdate">2026年3月2日</span></div></div>
+      <div class="stats-row">
+        <div class="stat"><div class="stat-val">575万</div><div class="stat-lbl">播放量</div></div>
+        <div class="stat"><div class="stat-val">5.5万+</div><div class="stat-lbl">点赞数</div></div>
+        <div class="stat"><div class="stat-val">20:21</div><div class="stat-lbl">视频时长</div></div>
+      </div>
+      <p class="vdesc">史诗狂暴行动：美国与以色列联合对伊朗关键目标发起罕见的压制性白昼空袭。</p>
+      <div class="comments">
+        <div class="comment-title">💬 热门评论</div>
+        <div class="comment">「历史性的一天。」</div>
+        <div class="comment">「我们士兵的勇气无与伦比。」</div>
+        <div class="comment">「过去十年间最激烈的军事对决。」</div>
+      </div>
+    </div>
+  </div>
+  <div class="timeline-section">
+    <h3 class="section-title">⏱ 内容时间线 · 分段深度解析</h3>
+    <div class="timeline-bar" data-vid="5"><div class="tseg active" style="width:15%;background:#e63946" data-idx="0"><span class="tseg-label">0:00<br>突发快报</span></div><div class="tseg " style="width:19%;background:#ff9f0a" data-idx="1"><span class="tseg-label">3:00<br>打击目标详解</span></div><div class="tseg " style="width:19%;background:#30d158" data-idx="2"><span class="tseg-label">7:00<br>联合声明阐释</span></div><div class="tseg " style="width:19%;background:#0a84ff" data-idx="3"><span class="tseg-label">11:00<br>协同行动透视</span></div><div class="tseg " style="width:17%;background:#5e5ce6" data-idx="4"><span class="tseg-label">15:00<br>将领背书</span></div><div class="tseg " style="width:11%;background:#ffd60a" data-idx="5"><span class="tseg-label">18:30<br>后续展望</span></div></div>
+    <div class="timeline-details"><div class="tdetail active" data-for="0"><span class="ttime">0:00 — 3:00</span><h4>突发快报</h4><p>强烈渲染罕见与历史性标签。</p></div><div class="tdetail " data-for="1"><span class="ttime">3:00 — 7:00</span><h4>打击目标详解</h4><p>列举被摧毁的近900次军方目标与基础设施。</p></div><div class="tdetail " data-for="2"><span class="ttime">7:00 — 11:00</span><h4>联合声明阐释</h4><p>复述国防部关于自卫和反制威胁的法理依据。</p></div><div class="tdetail " data-for="3"><span class="ttime">11:00 — 15:00</span><h4>协同行动透视</h4><p>美以空军与隐形战机的无缝配合表现。</p></div><div class="tdetail " data-for="4"><span class="ttime">15:00 — 18:30</span><h4>将领背书</h4><p>退役军官提供权威性赞誉，强化正义性框架。</p></div><div class="tdetail " data-for="5"><span class="ttime">18:30 — 20:21</span><h4>后续展望</h4><p>总结战果并释放强烈的延续打击信号。</p></div></div>
+  </div>
+  <div class="analysis-section">
+    <h3 class="section-title">🔬 八维深度解析</h3>
+    <div class="accordion"><div class="acc-item">
+<button class="acc-btn" onclick="toggleAcc(this)">📌 内容定性</button>
+<div class="acc-body"><p>机构媒体突发报道，官方立场的信息分发中心。</p></div>
+</div><div class="acc-item">
+<button class="acc-btn" onclick="toggleAcc(this)">🎯 叙事立场</button>
+<div class="acc-body"><p>亲政府、亲以立场的典型代表，赞扬军事威慑力。</p></div>
+</div><div class="acc-item">
+<button class="acc-btn" onclick="toggleAcc(this)">📊 传播分析</button>
+<div class="acc-body"><p>庞大的传统收视网+高频更新+独家军事视角。</p></div>
+</div><div class="acc-item">
+<button class="acc-btn" onclick="toggleAcc(this)">💡 核心信息</button>
+<div class="acc-body"><p>果断彻底的雷霆打击以摧毁伊方核心战力。</p></div>
+</div><div class="acc-item">
+<button class="acc-btn" onclick="toggleAcc(this)">🔍 可信度评估</button>
+<div class="acc-body"><p>★★☆☆☆ | 缺乏对平民影响的报道与多元化立场验证。</p></div>
+</div><div class="acc-item">
+<button class="acc-btn" onclick="toggleAcc(this)">💬 受众反应</button>
+<div class="acc-body"><p>美国本土保守派主导的观众群。</p></div>
+</div><div class="acc-item">
+<button class="acc-btn" onclick="toggleAcc(this)">📖 历史背景</button>
+<div class="acc-body"><p>迎合强烈国内爱国主义浪潮的产物。</p></div>
+</div></div>
+  </div>
+</article>
+</main>
+<footer>
+  <strong>伊朗 · 以色列战争 YouTube 深度分析报告</strong><br>
+  数据采集自 YouTube 公开平台 · 采集日期：2026年3月10日 · 仅供信息参考，不代表任何政治立场<br>
+  视频版权归原频道所有 · 本页面为学术研究与信息传播目的制作
+</footer>
+<script>
+// Timeline interaction
+document.querySelectorAll('.timeline-bar').forEach(bar=>{
+  bar.querySelectorAll('.tseg').forEach((seg,i)=>{
+    seg.addEventListener('click',()=>{
+      bar.querySelectorAll('.tseg').forEach(s=>s.classList.remove('active'));
+      seg.classList.add('active');
+      const detail = bar.nextElementSibling;
+      detail.querySelectorAll('.tdetail').forEach(d=>d.classList.remove('active'));
+      detail.querySelector(`.tdetail[data-for="${i}"]`).classList.add('active');
+    });
+  });
+});
+// Accordion
+function toggleAcc(btn){
+  const body = btn.nextElementSibling;
+  const isOpen = body.classList.contains('open');
+  btn.closest('.accordion').querySelectorAll('.acc-body').forEach(b=>b.classList.remove('open'));
+  btn.closest('.accordion').querySelectorAll('.acc-btn').forEach(b=>b.classList.remove('open'));
+  if(!isOpen){body.classList.add('open');btn.classList.add('open');}
+}
+// Scroll fade-in
+const obs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.style.animationDelay='0s';}});
+},{threshold:.05});
+document.querySelectorAll('.vcard').forEach(c=>obs.observe(c));
+</script>
+</body>
+</html>

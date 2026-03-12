@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>微博热搜产品创意报告 · 2026年03月09日 19:02</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0d1117;
+      --surface: #161b22;
+      --surface2: #21262d;
+      --border: #30363d;
+      --text: #e6edf3;
+      --text-muted: #8b949e;
+      --gold: #f0c040;
+      --gold-bg: rgba(240,192,64,0.10);
+      --gold-border: rgba(240,192,64,0.40);
+      --green: #3fb950;
+      --green-bg: rgba(63,185,80,0.10);
+      --green-border: rgba(63,185,80,0.35);
+      --gray-border: rgba(139,148,158,0.25);
+      --accent: #58a6ff;
+      --radius: 12px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', 'Noto Sans SC', sans-serif;
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+    .header {
+      background: linear-gradient(135deg, #1a1f2e 0%, #0d1117 60%, #1a1225 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 48px 32px 36px;
+      text-align: center;
+    }
+    .header-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(88,166,255,0.12); border: 1px solid rgba(88,166,255,0.3);
+      border-radius: 20px; padding: 6px 16px;
+      font-size: 13px; color: var(--accent); font-weight: 600; letter-spacing: 0.5px;
+      margin-bottom: 20px;
+    }
+    .header h1 {
+      font-size: clamp(26px, 4vw, 38px); font-weight: 700;
+      background: linear-gradient(90deg, #e6edf3 20%, #58a6ff 80%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      margin-bottom: 12px;
+    }
+    .header p { color: var(--text-muted); font-size: 15px; }
+    .stats-row {
+      display: flex; justify-content: center; flex-wrap: wrap; gap: 16px;
+      padding: 28px 32px; max-width: 900px; margin: 0 auto;
+    }
+    .stat-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 18px 28px; text-align: center;
+      min-width: 140px; flex: 1;
+    }
+    .stat-card .num { font-size: 32px; font-weight: 700; line-height: 1.1; }
+    .stat-card .label { color: var(--text-muted); font-size: 13px; margin-top: 4px; }
+    .stat-card.gold .num { color: var(--gold); }
+    .stat-card.green .num { color: var(--green); }
+    .stat-card.blue .num { color: var(--accent); }
+    .container { max-width: 960px; margin: 0 auto; padding: 0 24px 64px; }
+    .section-title {
+      font-size: 13px; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 1.5px; color: var(--text-muted);
+      margin: 32px 0 16px; padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+    .card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); margin-bottom: 20px; overflow: hidden;
+      transition: box-shadow 0.25s;
+    }
+    .card:hover { box-shadow: 0 4px 24px rgba(0,0,0,0.4); }
+    .card.excellent {
+      border-color: var(--gold-border);
+      background: linear-gradient(145deg, #1d1a0f 0%, var(--surface) 60%);
+    }
+    .card.good {
+      border-color: var(--green-border);
+      background: linear-gradient(145deg, #0d1a10 0%, var(--surface) 60%);
+    }
+    .card-header {
+      display: flex; align-items: center; gap: 14px;
+      padding: 18px 20px 14px; border-bottom: 1px solid var(--border);
+    }
+    .rank-badge {
+      width: 36px; height: 36px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 15px; font-weight: 700; flex-shrink: 0;
+      background: var(--surface2); color: var(--text-muted);
+    }
+    .card.excellent .rank-badge { background: var(--gold-bg); color: var(--gold); }
+    .card.good .rank-badge { background: var(--green-bg); color: var(--green); }
+    .card-title-wrap { flex: 1; min-width: 0; }
+    .card-title {
+      font-size: 17px; font-weight: 600; line-height: 1.35;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .card-meta { display: flex; gap: 10px; align-items: center; margin-top: 4px; flex-wrap: wrap; }
+    .hot-tag {
+      font-size: 12px; color: var(--text-muted);
+      background: var(--surface2); border-radius: 4px; padding: 2px 8px;
+    }
+    .score-badge {
+      font-size: 13px; font-weight: 700; padding: 3px 10px; border-radius: 6px;
+    }
+    .score-badge.excellent { background: var(--gold-bg); color: var(--gold); border: 1px solid var(--gold-border); }
+    .score-badge.good      { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-border); }
+    .score-badge.normal    { background: rgba(139,148,158,0.1); color: var(--text-muted); border: 1px solid var(--gray-border); }
+    .level-label { font-size: 11px; }
+    .card-body { padding: 18px 20px; }
+    .section-label {
+      font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+      color: var(--text-muted); margin-bottom: 8px;
+    }
+    .event-summary {
+      color: #cdd9e5; font-size: 14px; line-height: 1.75;
+      background: var(--surface2); border-left: 3px solid var(--accent);
+      border-radius: 0 6px 6px 0; padding: 12px 14px; margin-bottom: 20px;
+    }
+    .products-grid { display: flex; flex-direction: column; gap: 14px; }
+    .product-card {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 8px; padding: 14px 16px;
+    }
+    .product-name { font-size: 15px; font-weight: 700; color: var(--accent); margin-bottom: 8px; }
+    .product-row { display: flex; gap: 8px; margin-bottom: 6px; }
+    .product-icon { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+    .product-text { font-size: 13px; color: #cdd9e5; line-height: 1.6; }
+    .product-label { color: var(--text-muted); font-size: 12px; font-weight: 600; }
+    .score-breakdown {
+      display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; padding-top: 14px;
+      border-top: 1px solid var(--border); align-items: center;
+    }
+    .score-pill {
+      font-size: 12px; padding: 3px 10px; border-radius: 20px;
+      background: var(--surface2); color: var(--text-muted); border: 1px solid var(--border);
+    }
+    .score-reason { font-size: 12px; color: var(--text-muted); flex: 1; min-width: 150px; }
+    .footer {
+      text-align: center; color: var(--text-muted); font-size: 12px;
+      padding: 24px 0 40px; border-top: 1px solid var(--border);
+      max-width: 960px; margin: 0 auto;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-badge">🔥 微博热搜 · AI 产品创意分析</div>
+  <h1>今日热搜产品创意报告</h1>
+  <p>分析时间：2026年03月09日 19:02 &nbsp;·&nbsp; 数据来源：微博热搜 Top 10</p>
+</div>
+
+<div class="stats-row">
+  <div class="stat-card blue"><div class="num">10</div><div class="label">分析热点</div></div>
+  <div class="stat-card gold"><div class="num">5</div><div class="label">🏆 优秀创意 ≥80分</div></div>
+  <div class="stat-card green"><div class="num">4</div><div class="label">✅ 良好创意 60-79分</div></div>
+  <div class="stat-card"><div class="num" style="color:#8b949e">1</div><div class="label">普通 &lt;60分</div></div>
+</div>
+
+<div class="container">
+  <div class="section-title">🏆 优秀创意（≥ 80 分）—— 重点推荐</div>
+
+<div class="card excellent" id="trend-4">
+  <div class="card-header">
+    <div class="rank-badge">#4</div>
+    <div class="card-title-wrap">
+      <div class="card-title">安装OpenClaw价格</div>
+      <div class="card-meta">
+        <span class="hot-tag">🔥 </span>
+        <span class="score-badge excellent">98 分 &nbsp;<span class="level-label">优秀 🏆</span></span>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="section-label">📰 事件脉络</div>
+    <div class="event-summary">开源项目OpenClaw因功能强大走红。由于部署门槛高，代装服务火爆，最高单笔成交额惊人。</div>
+    <div class="section-label">💡 产品创意</div>
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="product-name">🚀 ClawDock 一键部署</div>
+        <div class="product-row">
+          <span class="product-icon">⚙️</span>
+          <div class="product-text"><span class="product-label">核心功能&nbsp;</span>图形化本地AI Agent安装管家，解决复杂环境配置，内置安全沙箱保障隐私。</div>
+        </div>
+        <div class="product-row">
+          <span class="product-icon">👥</span>
+          <div class="product-text"><span class="product-label">目标用户&nbsp;</span>中小企业主，非技术类博主，效率达人。</div>
+        </div>
+      </div>
+    </div>
+    <div class="score-breakdown">
+      <span class="score-pill">有趣度 80 / 80</span>
+      <span class="score-pill">有用度 18 / 20</span>
+      <span class="score-pill">综合 98 / 100</span>
+      <span class="score-reason">AI前沿工具与‘日赚斗金’噱头结合，既有猎奇性又有极高的落地服务价值。</span>
+    </div>
+  </div>
+</div>
+<div class="card excellent" id="trend-6">
+  <div class="card-header">
+    <div class="rank-badge">#6</div>
+    <div class="card-title-wrap">
+      <div class="card-title">AI龙虾到底能干什么</div>
+      <div class="card-meta">
+        <span class="hot-tag">🔥 </span>
+        <span class="score-badge excellent">95 分 &nbsp;<span class="level-label">优秀 🏆</span></span>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="section-label">📰 事件脉络</div>
+    <div class="event-summary">两会热议话题。OpenClaw以其超强的终端控制能力，成为人工智能助手的代名词（龙虾）。</div>
+    <div class="section-label">💡 产品创意</div>
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="product-name">🚀 龙虾指令集</div>
+        <div class="product-row">
+          <span class="product-icon">⚙️</span>
+          <div class="product-text"><span class="product-label">核心功能&nbsp;</span>针对OpenClaw用户的低代码工作流社区，分享日常报表处理、脚本运行模板。</div>
+        </div>
+        <div class="product-row">
+          <span class="product-icon">👥</span>
+          <div class="product-text"><span class="product-label">目标用户&nbsp;</span>金融分析师，行政助理，电商运营。</div>
+        </div>
+      </div>
+    </div>
+    <div class="score-breakdown">
+      <span class="score-pill">有趣度 75 / 80</span>
+      <span class="score-pill">有用度 20 / 20</span>
+      <span class="score-pill">综合 95 / 100</span>
+      <span class="score-reason">新质生产力落地的具体形象，科普性极强，用户对自动化办公期待值拉满。</span>
+    </div>
+  </div>
+</div>
+<div class="card excellent" id="trend-5">
+  <div class="card-header">
+    <div class="rank-badge">#5</div>
+    <div class="card-title-wrap">
+      <div class="card-title">狗我就是咪咪啊</div>
+      <div class="card-meta">
+        <span class="hot-tag">🔥 </span>
+        <span class="score-badge excellent">88 分 &nbsp;<span class="level-label">优秀 🏆</span></span>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="section-label">📰 事件脉络</div>
+    <div class="event-summary">一则关于流浪狗认亲的感人视频刷屏。这种‘万物有灵’的叙事再次证明了宠物内容的力量。</div>
+    <div class="section-label">💡 产品创意</div>
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="product-name">🚀 宠语瞬间</div>
+        <div class="product-row">
+          <span class="product-icon">⚙️</span>
+          <div class="product-text"><span class="product-label">核心功能&nbsp;</span>利用AI分析宠物叫声与动作，生成趣味‘内心独白’字幕的短视频剪辑插件。</div>
+        </div>
+        <div class="product-row">
+          <span class="product-icon">👥</span>
+          <div class="product-text"><span class="product-label">目标用户&nbsp;</span>猫狗双全的年轻人，短视频内容创作者。</div>
+        </div>
+      </div>
+    </div>
+    <div class="score-breakdown">
+      <span class="score-pill">有趣度 78 / 80</span>
+      <span class="score-pill">有用度 10 / 20</span>
+      <span class="score-pill">综合 88 / 100</span>
+      <span class="score-reason">萌宠情感极致表达，天然的病毒式传播素材，高共鸣易变现。</span>
+    </div>
+  </div>
+</div>
+<div class="card excellent" id="trend-1">
+  <div class="card-header">
+    <div class="rank-badge">#1</div>
+    <div class="card-title-wrap">
+      <div class="card-title">逐玉</div>
+      <div class="card-meta">
+        <span class="hot-tag">🔥 </span>
+        <span class="score-badge excellent">80 分 &nbsp;<span class="level-label">优秀 🏆</span></span>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="section-label">📰 事件脉络</div>
+    <div class="event-summary">3月8日晚台网联播。田曦薇打破甜美标签，张凌赫减重出演。先婚后爱设定与极致镜头美学引发开播热潮。</div>
+    <div class="section-label">💡 产品创意</div>
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="product-name">🚀 逐玉印象空间</div>
+        <div class="product-row">
+          <span class="product-icon">⚙️</span>
+          <div class="product-text"><span class="product-label">核心功能&nbsp;</span>AR实景剧照打卡小程序，结合非遗刺绣元素，用户可云体验剧中名场面并DIY周边。</div>
+        </div>
+        <div class="product-row">
+          <span class="product-icon">👥</span>
+          <div class="product-text"><span class="product-label">目标用户&nbsp;</span>Z世代女性，古装剧忠实观众，二次元爱好者。</div>
+        </div>
+      </div>
+    </div>
+    <div class="score-breakdown">
+      <span class="score-pill">有趣度 75 / 80</span>
+      <span class="score-pill">有用度 5 / 20</span>
+      <span class="score-pill">综合 80 / 100</span>
+      <span class="score-reason">热门古装大屏引流，先婚后爱梗经久不衰，粉丝基础庞大，传播性极强。</span>
+    </div>
+  </div>
+</div>
+<div class="card excellent" id="trend-7">
+  <div class="card-header">
+    <div class="rank-badge">#7</div>
+    <div class="card-title-wrap">
+      <div class="card-title">70岁网瘾老人刷手机近视2300度</div>
+      <div class="card-meta">
+        <span class="hot-tag">🔥 </span>
+        <span class="score-badge excellent">80 分 &nbsp;<span class="level-label">优秀 🏆</span></span>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="section-label">📰 事件脉络</div>
+    <div class="event-summary">菏泽一老人因全天候侧躺刷手机导致度数爆表。暴露出老年社交娱乐匮乏与数字健康风险。</div>
+    <div class="section-label">💡 产品创意</div>
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="product-name">🚀 银发护眼盾</div>
+        <div class="product-row">
+          <span class="product-icon">⚙️</span>
+          <div class="product-text"><span class="product-label">核心功能&nbsp;</span>强制性护眼插件。检测近距离用眼超过20分钟即弹窗强制休息，并具备语音提醒功能。</div>
+        </div>
+        <div class="product-row">
+          <span class="product-icon">👥</span>
+          <div class="product-text"><span class="product-label">目标用户&nbsp;</span>银发族子女，高龄网民。</div>
+        </div>
+      </div>
+    </div>
+    <div class="score-breakdown">
+      <span class="score-pill">有趣度 65 / 80</span>
+      <span class="score-pill">有用度 15 / 20</span>
+      <span class="score-pill">综合 80 / 100</span>
+      <span class="score-reason">社会话题冲突感强，具备极高的警示教育意义，针对适老化改造有巨大空间。</span>
+    </div>
+  </div>
+</div>
+  <div class="section-title">✅ 良好创意（60 – 79 分）</div>
+
+<div class="card good" id="trend-3">
+  <div class="card-header">
+    <div class="rank-badge">#3</div>
+    <div class="card-title-wrap">
+      <div class="card-title">妇女节快乐</div>
+      <div class="card-meta">
+        <span class="hot-tag">🔥 </span>
+        <span class="score-badge good">75 分 &nbsp;<span class="level-label">良好 ✅</span></span>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="section-label">📰 事件脉络</div>
+    <div class="event-summary">全网祝福刷屏。商家借机促销，女性题材内容井喷，体现社会对女性角色的多重肯定。</div>
+    <div class="section-label">💡 产品创意</div>
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="product-name">🚀 她力量胶囊</div>
+        <div class="product-row">
+          <span class="product-icon">⚙️</span>
+          <div class="product-text"><span class="product-label">核心功能&nbsp;</span>记录与分享女性职场、生活高光时刻的音频社交工具，支持匿名发送鼓励卡片。</div>
+        </div>
+        <div class="product-row">
+          <span class="product-icon">👥</span>
+          <div class="product-text"><span class="product-label">目标用户&nbsp;</span>职场女性，大学生，NGO组织。</div>
+        </div>
+      </div>
+    </div>
+    <div class="score-breakdown">
+      <span class="score-pill">有趣度 60 / 80</span>
+      <span class="score-pill">有用度 15 / 20</span>
+      <span class="score-pill">综合 75 / 100</span>
+      <span class="score-reason">全民节日共鸣度高，具有强烈的商业营销潜力和情感价值。</span>
+    </div>
+  </div>
+</div>
+<div class="card good" id="trend-8">
+  <div class="card-header">
+    <div class="rank-badge">#8</div>
+    <div class="card-title-wrap">
+      <div class="card-title">嘻哈我感谢那些女士</div>
+      <div class="card-meta">
+        <span class="hot-tag">🔥 </span>
+        <span class="score-badge good">75 分 &nbsp;<span class="level-label">良好 ✅</span></span>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="section-label">📰 事件脉络</div>
+    <div class="event-summary">创意致敬内容。通过极具节奏感的艺术形式赋予‘她力量’更年轻的表达方式。</div>
+    <div class="section-label">💡 产品创意</div>
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="product-name">🚀 韵律致敬墙</div>
+        <div class="product-row">
+          <span class="product-icon">⚙️</span>
+          <div class="product-text"><span class="product-label">核心功能&nbsp;</span>H5互动页面。用户输入一个女性关键词，自动生成一段Rap歌词并合成致敬语音。</div>
+        </div>
+        <div class="product-row">
+          <span class="product-icon">👥</span>
+          <div class="product-text"><span class="product-label">目标用户&nbsp;</span>说唱爱好者，潮流学生群体。</div>
+        </div>
+      </div>
+    </div>
+    <div class="score-breakdown">
+      <span class="score-pill">有趣度 70 / 80</span>
+      <span class="score-pill">有用度 5 / 20</span>
+      <span class="score-pill">综合 75 / 100</span>
+      <span class="score-reason">跨界创作，流行文化与严肃议题碰撞，容易获得社交平台二次创作支撑。</span>
+    </div>
+  </div>
+</div>
+<div class="card good" id="trend-10">
+  <div class="card-header">
+    <div class="rank-badge">#10</div>
+    <div class="card-title-wrap">
+      <div class="card-title">云南蓝莓</div>
+      <div class="card-meta">
+        <span class="hot-tag">🔥 </span>
+        <span class="score-badge good">73 分 &nbsp;<span class="level-label">良好 ✅</span></span>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="section-label">📰 事件脉络</div>
+    <div class="event-summary">云南蓝莓量产导致价格腰斩。‘蓝莓自由’成为热词，展示农业工业化带来的成果红利。</div>
+    <div class="section-label">💡 产品创意</div>
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="product-name">🚀 果径管家</div>
+        <div class="product-row">
+          <span class="product-icon">⚙️</span>
+          <div class="product-text"><span class="product-label">核心功能&nbsp;</span>基于手机摄像头的蓝莓规格自动分拣小程序，辅助消费者识别果型与新鲜度。</div>
+        </div>
+        <div class="product-row">
+          <span class="product-icon">👥</span>
+          <div class="product-text"><span class="product-label">目标用户&nbsp;</span>追求高品质生活的家庭主妇，生鲜分销商。</div>
+        </div>
+      </div>
+    </div>
+    <div class="score-breakdown">
+      <span class="score-pill">有趣度 55 / 80</span>
+      <span class="score-pill">有用度 18 / 20</span>
+      <span class="score-pill">综合 73 / 100</span>
+      <span class="score-reason">民生相关，技术改变生活的温情切点。商业落地性极强（生鲜零售）。</span>
+    </div>
+  </div>
+</div>
+<div class="card good" id="trend-9">
+  <div class="card-header">
+    <div class="rank-badge">#9</div>
+    <div class="card-title-wrap">
+      <div class="card-title">迪拜黄金打折售卖</div>
+      <div class="card-meta">
+        <span class="hot-tag">🔥 </span>
+        <span class="score-badge good">72 分 &nbsp;<span class="level-label">良好 ✅</span></span>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="section-label">📰 事件脉络</div>
+    <div class="event-summary">迪拜金价促销传闻引各路博主实测。伴随金价上涨预期，该话题成为当日消费风向标。</div>
+    <div class="section-label">💡 产品创意</div>
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="product-name">🚀 全球吸金助手</div>
+        <div class="product-row">
+          <span class="product-icon">⚙️</span>
+          <div class="product-text"><span class="product-label">核心功能&nbsp;</span>实时监控各大国际金店折扣与汇率变动，计算回国退税后的真实到手价。</div>
+        </div>
+        <div class="product-row">
+          <span class="product-icon">👥</span>
+          <div class="product-text"><span class="product-label">目标用户&nbsp;</span>高净值消费群体，代购群体。</div>
+        </div>
+      </div>
+    </div>
+    <div class="score-breakdown">
+      <span class="score-pill">有趣度 60 / 80</span>
+      <span class="score-pill">有用度 12 / 20</span>
+      <span class="score-pill">综合 72 / 100</span>
+      <span class="score-reason">消费升级背景下的资产避险讨论。自带财富流量，极具商业咨询价值。</span>
+    </div>
+  </div>
+</div>
+  <div class="section-title">📋 其余热点（&lt; 60 分）</div>
+
+<div class="card " id="trend-2">
+  <div class="card-header">
+    <div class="rank-badge">#2</div>
+    <div class="card-title-wrap">
+      <div class="card-title">王毅谈伊朗局势</div>
+      <div class="card-meta">
+        <span class="hot-tag">🔥 </span>
+        <span class="score-badge normal">50 分 &nbsp;<span class="level-label">普通</span></span>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="section-label">📰 事件脉络</div>
+    <div class="event-summary">两会记者会亮点。王毅呼吁‘停火止战’，重申主权安全原则，展现大国担当。</div>
+    <div class="section-label">💡 产品创意</div>
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="product-name">🚀 外交一点通</div>
+        <div class="product-row">
+          <span class="product-icon">⚙️</span>
+          <div class="product-text"><span class="product-label">核心功能&nbsp;</span>实时解析国际关系变动，将复杂的外交辞令转化为通俗易懂的背景图表。</div>
+        </div>
+        <div class="product-row">
+          <span class="product-icon">👥</span>
+          <div class="product-text"><span class="product-label">目标用户&nbsp;</span>大学生，国际时政关注者，商务人士。</div>
+        </div>
+      </div>
+    </div>
+    <div class="score-breakdown">
+      <span class="score-pill">有趣度 30 / 80</span>
+      <span class="score-pill">有用度 20 / 20</span>
+      <span class="score-pill">综合 50 / 100</span>
+      <span class="score-reason">宏大叙事时政热点，实用性较低但具有极高的社会责任感和信息权威性。</span>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="footer">
+  <p>
+    由 Claude Code · 微博热搜产品创意分析 Skill 自动生成 &nbsp;|&nbsp;
+    数据提供：<a href="https://www.tianapi.com" target="_blank">天聚数行 TianAPI</a>
+  </p>
+</div>
+
+</body>
+</html>
