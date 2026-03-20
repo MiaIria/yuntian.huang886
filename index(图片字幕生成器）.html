@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>图片字幕生成器</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+</head>
+<body>
+  <div class="app-layout">
+    <!-- 侧边栏：操作区 -->
+    <aside class="sidebar">
+      <header class="app-header">
+        <h1>图片字幕生成器</h1>
+      </header>
+
+      <div class="scroll-container">
+        <!-- 上传区域 -->
+        <div class="section upload-section">
+          <label class="section-title">上传图片</label>
+          <div id="dropZone" class="drop-zone">
+            <input type="file" id="fileInput" accept="image/png, image/jpeg, image/webp" hidden>
+            <button id="uploadBtn" class="btn-upload">
+              <span class="icon">+</span> 选择图片
+            </button>
+            <div id="fileName" class="file-name">支持点击或拖拽上传</div>
+          </div>
+        </div>
+
+        <!-- 字幕设置 -->
+        <div class="section settings-section">
+          <label class="section-title">字幕设置</label>
+          
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="subtitleHeight">字幕高度</label>
+              <div class="input-wrapper">
+                <input id="subtitleHeight" type="number" min="10" max="500" value="80">
+                <span class="unit">px</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="fontSize">字体大小</label>
+              <div class="input-wrapper">
+                <input id="fontSize" type="number" min="10" max="200" value="40">
+                <span class="unit">px</span>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="lineGap">行间距</label>
+              <div class="input-wrapper">
+                <input id="lineGap" type="number" min="0" max="100" value="0">
+                <span class="unit">px</span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="fontColor">字体颜色</label>
+              <div class="color-input-wrapper">
+                <input id="fontColor" type="color" value="#ffffff">
+                <span id="fontColorValue" class="color-value">#FFFFFF</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="strokeColor">轮廓颜色</label>
+              <div class="color-input-wrapper">
+                <input id="strokeColor" type="color" value="#000000">
+                <span id="strokeColorValue" class="color-value">#000000</span>
+              </div>
+            </div>
+
+            <div class="form-group full-width">
+              <label for="fontFamily">字体样式</label>
+              <select id="fontFamily" class="select-input">
+                <option value="sans-serif">默认黑体 (Sans Serif)</option>
+                <option value="'Microsoft YaHei', sans-serif">微软雅黑</option>
+                <option value="'SimSun', serif">宋体</option>
+                <option value="'Arial', sans-serif">Arial</option>
+                <option value="'Times New Roman', serif">Times New Roman</option>
+                <option value="'Courier New', monospace">Courier New</option>
+              </select>
+            </div>
+            <div class="form-group full-width">
+              <label for="fontWeight">字体粗细</label>
+              <select id="fontWeight" class="select-input">
+                <option value="normal">正常 (Normal)</option>
+                <option value="bold">粗体 (Bold)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- 字幕内容 -->
+        <div class="section content-section">
+          <label class="section-title" for="textInput">字幕内容</label>
+          <textarea id="textInput" class="text-area" placeholder="在此输入多行字幕，回车分行..."></textarea>
+        </div>
+
+        <!-- 操作按钮 -->
+        <div class="actions">
+          <button id="generateBtn" class="btn btn-primary">生成字幕图片</button>
+          <button id="saveBtn" class="btn btn-secondary" disabled>保存图片</button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- 主区域：预览 -->
+    <main class="preview-area">
+      <div class="preview-card">
+        <div class="card-header">
+          <h2>预览</h2>
+        </div>
+        <div class="card-body">
+          <div id="emptyState" class="empty-state">
+            <div class="empty-icon">🖼️</div>
+            <p>暂无图片，请先在左侧上传</p>
+          </div>
+          <canvas id="canvas" class="preview-canvas" hidden></canvas>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Toast 容器 -->
+  <div id="toastContainer" class="toast-container"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
