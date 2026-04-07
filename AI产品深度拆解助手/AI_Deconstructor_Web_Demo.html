@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 产品深度拆解助手 - 演示前台</title>
+    <style>
+        body, html {
+            margin: 0; padding: 0; height: 100%;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+            color: #ffffff;
+            display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
+        }
+        .container { max-width: 800px; padding: 2rem; }
+        .badge {
+            background: rgba(99, 102, 241, 0.2); color: #818cf8;
+            padding: 0.5rem 1rem; border-radius: 9999px; font-size: 0.875rem; font-weight: 600;
+            display: inline-block; margin-bottom: 1.5rem; border: 1px solid rgba(99, 102, 241, 0.4);
+            letter-spacing: 1px;
+        }
+        h1 { font-size: 3rem; margin-bottom: 1rem; line-height: 1.2; font-weight: 800; background: -webkit-linear-gradient(#fff, #94a3b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent;}
+        p { font-size: 1.25rem; color: #94a3b8; margin-bottom: 2rem; line-height: 1.6; }
+        .instructions {
+            background: rgba(255, 255, 255, 0.05); padding: 1.5rem; border-radius: 12px; border: 1px dashed rgba(255, 255, 255, 0.1); text-align: left;
+            font-size: 0.95rem; line-height: 1.8;
+        }
+        code { background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px; color: #a5b4fc;}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="badge">🚀 Powered by Coze Workflow Agent</div>
+        <h1>AI 产品深度拆解剖析引擎</h1>
+        <p>一键透视底层代码基因与架构，输出硅谷风投核心商业推演报告。<br>拒绝套话，直击商业软肋。</p>
+        
+        <div class="instructions">
+            <h3 style="margin-top: 0; color: #cbd5e1;">👉 Web SDK 嵌入提示 (测试成功后，您可以把当前这个提示框对应的代码删掉)：</h3>
+            <ol style="color: #94a3b8; margin: 0; padding-left: 20px;">
+                <li>前往 Coze 电脑端，点击右上角的【发布】。</li>
+                <li>往下找，勾选发布渠道【Web SDK】。</li>
+                <li>在官方弹框中，复制生成的用于集成的 <code>&lt;script&gt;</code> 长串完整代码。</li>
+                <li>用记事本或 VSCode 打开当前的这个 <code>AI_Deconstructor_Web_Demo.html</code> 文件。</li>
+                <li>滑到文件的最底部，把代码贴在 <code>&lt;/body&gt;</code> 标签的上方并保存。</li>
+                <li>双击浏览器重新打开本文件，网页的右下角就会长出你的专属 AI 聊天助手了！</li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- 请将 Coze 的 Web SDK <script> 代码粘贴在下面这行，它就会在这个精美的背景上渲染出聊天气泡网页： -->
+
+    
+</body>
+</html>
